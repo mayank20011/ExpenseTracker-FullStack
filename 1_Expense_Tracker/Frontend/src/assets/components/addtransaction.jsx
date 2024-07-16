@@ -27,7 +27,6 @@ function AddTransaction({expense, setExpense})
           let arr=[];
           arr=[obj, ...expense];
           setExpense(arr);
-          console.log(expense);
           e.target[0].value="";
           e.target[1].value="";
         }
