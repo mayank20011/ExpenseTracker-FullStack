@@ -1,0 +1,10 @@
+.error
+{
+  display:flex;
+  background-color:rgb(250, 150, 150);
+  color:red;
+}
+.msg
+{
+  flex:1;
+}

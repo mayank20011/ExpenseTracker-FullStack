@@ -1,0 +1,46 @@
+.history
+{
+  display:grid;
+  row-gap:5px;
+}
+.historyList
+{
+  max-height:400px;
+  scrollbar-width: thin;
+  overflow:auto;
+}
+.list
+{
+  margin-top:4px;
+  border:1px solid #e6e6e6;
+  border-bottom:2px solid #ccc;
+  width:100%;
+  padding:3px 4px;
+  display:flex;
+  cursor:pointer;
+  font-weight:500;
+  animation:listanimation 0.3s ease-in-out;
+}
+.title
+{
+  flex:1;
+}
+.borderred
+{
+  border-right:4px solid red;
+}
+.bordergreen
+{
+  border-right:4px solid green;
+}
+@keyframes listanimation
+{
+  from {scale:90%}
+  to {scale:100%}
+}
+.blank
+{
+  color:red;
+  font-size:20px;
+  font-weight:light;
+}
