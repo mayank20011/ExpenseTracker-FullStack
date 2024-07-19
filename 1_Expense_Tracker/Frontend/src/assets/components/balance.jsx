@@ -1,5 +1,10 @@
-function Balance({expense})
+import { useEffect } from "react";
+function Balance({expense, onchange})
 { 
+    useEffect(()=>
+    {
+      console.log('Balance Rerendered');
+    },[onchange]);
     let amount=0;
     expense.forEach((eachdata)=>
     {

@@ -1,13 +1,14 @@
 import styles from "./addtransaction.module.css";
 import Error from "./error";
+import axios from "axios";
 function AddTransaction({expense, setExpense})
 {
   function handleForm(e)
   {
     e.preventDefault();
-    const title=e.target[0].value;
+    const text=e.target[0].value;
     const amount=e.target[1].value;
-    if(title.trim()=="" || amount.trim()=="")
+    if(text.trim()=="" || amount.trim()=="")
     {
       alert("Fill Up both form values");
     }
@@ -21,12 +22,19 @@ function AddTransaction({expense, setExpense})
         else
         {
           const obj={
-            title:e.target[0].value,
+            text:e.target[0].value,
             amount:no
           }
-          let arr=[];
-          arr=[obj, ...expense];
-          setExpense(arr);
+          axios.post('http://localhost:5000/api/v1/transactions', obj)
+          .then((response)=>
+            {
+              setExpense([response.data, ...expense],);
+              console.log('request Successfull');
+            })
+          .catch(()=>
+            {
+              console.log('request Failed');
+            });
           e.target[0].value="";
           e.target[1].value="";
         }

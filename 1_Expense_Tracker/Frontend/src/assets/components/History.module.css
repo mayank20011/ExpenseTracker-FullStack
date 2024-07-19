@@ -11,6 +11,7 @@
 }
 .list
 {
+  position:relative;
   margin-top:4px;
   border:1px solid #e6e6e6;
   border-bottom:2px solid #ccc;
@@ -20,6 +21,8 @@
   cursor:pointer;
   font-weight:500;
   animation:listanimation 0.3s ease-in-out;
+  justify-content:space-between;
+  background:white;
 }
 .title
 {
@@ -43,4 +46,13 @@
   color:red;
   font-size:20px;
   font-weight:light;
+}
+.closebtn
+{
+  position:absolute;
+  background:red;
+  top:0;
+  padding:3px 10px;
+  border-radius:2px;
+  left:0;
 }
