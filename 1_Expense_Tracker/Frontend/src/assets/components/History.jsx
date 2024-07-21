@@ -4,7 +4,7 @@ import axios from "axios";
 import DltBtn from "./dltbutton.jsx";
 import UpdateButton from "./updatebutton.jsx";
 import ListStrip from "./liststrip.jsx";
-function History({ expense, setExpense, updateobj}) {
+function History({ expense, setExpense, updateobj }) {
   let [showCloseBtn, setshowCloseBtn] = useState(false);
   function showclosebutton() {
     // console.log('Entered');
@@ -21,7 +21,7 @@ function History({ expense, setExpense, updateobj}) {
       .delete(`http://localhost:5000/api/v1/transactions/${objid}`)
       .then(() => {
         axios
-          .get("http://localhost:5000/api/v1/transactions")
+          .get("http://localhost:5000/api/v1/transactions/")
           .then((res) => {
             setExpense(res.data.datagot);
           })
@@ -46,21 +46,19 @@ function History({ expense, setExpense, updateobj}) {
                 key={eachentry._id}
                 className={`${styles.list} ${
                   eachentry.amount >= 0 ? styles.bordergreen : styles.borderred
-                }`
-              }
-              onMouseEnter={showclosebutton}
-              onMouseLeave={hideclosebutton}
+                }`}
+                onMouseEnter={showclosebutton}
+                onMouseLeave={hideclosebutton}
               >
                 {showCloseBtn && (
                   <DltBtn id={eachentry._id} dltItem={dltItem} />
                 )}
 
-                <ListStrip
-                  text={eachentry.text}
-                  amount={eachentry.amount}
-                />
+                <ListStrip text={eachentry.text} amount={eachentry.amount} />
 
-                {showCloseBtn && <UpdateButton id={eachentry._id} updateobj={updateobj}/>}
+                {showCloseBtn && (
+                  <UpdateButton id={eachentry._id} updateobj={updateobj} />
+                )}
               </li>
             ))}
           </ul>

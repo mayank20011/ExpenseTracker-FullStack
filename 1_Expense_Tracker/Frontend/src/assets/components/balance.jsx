@@ -3,7 +3,7 @@ function Balance({expense, onchange})
 { 
     useEffect(()=>
     {
-      console.log('Balance Rerendered');
+      // console.log('Balance Rerendered');
     },[onchange]);
     let amount=0;
     expense.forEach((eachdata)=>

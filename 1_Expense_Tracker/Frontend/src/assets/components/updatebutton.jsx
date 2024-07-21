@@ -4,7 +4,6 @@ function UpdateButton({ id, updateobj }) {
 
   function updatetransaction(e) {
     e.stopPropagation();
-    console.log(`Function updatetransaction from updatebutton.jsx run`);
     let title=e.target.parentElement.children[1].innerHTML;
     let amount=e.target.parentElement.children[2].innerHTML;
     let obj = {

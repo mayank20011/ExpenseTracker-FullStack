@@ -2,13 +2,18 @@ import styles from "./addtransaction.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-function AddTransaction({ expense, setExpense, updatedobject }) {
-  
-  const [inputValue, setInputValue] = useState({
+function AddTransaction({
+  expense,
+  setExpense,
+  updatedobject,
+  setUpdatedObject,
+}) {
+  let defaultvalue = {
     _id: "",
     text: "",
     amount: "",
-  });
+  };
+  const [inputValue, setInputValue] = useState(defaultvalue);
   useEffect(() => {
     if (updatedobject) {
       setInputValue({
@@ -19,25 +24,36 @@ function AddTransaction({ expense, setExpense, updatedobject }) {
     }
   }, [updatedobject]);
 
-  function updateObject(obj) {
+  function updateObject(obj, e) {
     axios
       .patch(
         `http://localhost:5000/api/v1/transactions/${updatedobject._id}`,
         obj
       )
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        axios
+          .get("http://localhost:5000/api/v1/transactions/")
+          .then((response) => {
+            // console.log(response);
+            setExpense(response.data.datagot);
+            setInputValue(defaultvalue);
+            setUpdatedObject(null);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch((err) => {
         console.log(err);
       });
   }
-  function createObject() {
+  function createObject(obj, e) {
     axios
-      .post("http://localhost:5000/api/v1/transactions", obj)
+      .post("http://localhost:5000/api/v1/transactions/", obj)
       .then((response) => {
         setExpense([response.data, ...expense]);
-        console.log("request Successfull");
+        setInputValue(defaultvalue);
+        setUpdatedObject(null);
       })
       .catch(() => {
         console.log("request Failed");
@@ -60,12 +76,10 @@ function AddTransaction({ expense, setExpense, updatedobject }) {
           amount: no,
         };
         if (e.target.children[2].innerHTML === "Add Transaction") {
-          createObject(obj);
+          createObject(obj, e);
         } else {
-          updateObject(obj);
+          updateObject(obj, e);
         }
-        e.target[0].value = "";
-        e.target[1].value = "";
       }
     }
   }
@@ -81,10 +95,9 @@ function AddTransaction({ expense, setExpense, updatedobject }) {
             type="text"
             placeholder="Enter text..."
             className={styles.input}
-            onChange={(e)=>
-              {
-                setInputValue({...inputValue, text:e.target.value})
-              }}
+            onChange={(e) => {
+              setInputValue({ ...inputValue, text: e.target.value });
+            }}
             value={inputValue.text}
           ></input>
         </div>
@@ -99,10 +112,9 @@ function AddTransaction({ expense, setExpense, updatedobject }) {
             placeholder="Enter Amount..."
             value={inputValue.amount}
             className={styles.input}
-            onChange={(e)=>
-              {
-                setInputValue({...inputValue, text:e.target.value})
-              }}
+            onChange={(e) => {
+              setInputValue({ ...inputValue, amount: e.target.value });
+            }}
           ></input>
         </div>
 
