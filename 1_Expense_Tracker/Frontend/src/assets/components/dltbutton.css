@@ -1,0 +1,20 @@
+.dltbtn
+{
+   scale:0;
+   padding:0px 8px;
+   border-radius:3px;
+   background-color: red;
+   animation:inframe 0.7s ease-in-out forwards;
+   margin-right:3px;
+}
+@keyframes inframe
+{
+   from
+   {
+     scale:0%;
+   }
+   to
+   {
+      scale:100%;
+   }
+}

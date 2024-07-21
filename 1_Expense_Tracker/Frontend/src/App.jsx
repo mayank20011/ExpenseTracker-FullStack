@@ -8,6 +8,15 @@ import AddTransaction from "./assets/components/addtransaction.jsx";
 import axios from "axios";
 
 function App() {
+
+  let [updatedobject, setUpdatedObject]=useState();
+  
+  function updateobj(obj)
+  {
+      setUpdatedObject(obj);
+      console.log('function updateobject from app.jsx run');
+  }
+
 useEffect(() => {
   console.log('App Rerendered');
   // Fetch data from the API
@@ -29,8 +38,8 @@ useEffect(() => {
       <div className="tracker-container">
         <Balance expense={expense}/>
         <IncomeExpense expense={expense}/>
-        <History expense={expense} setExpense={setExpense}/>
-        <AddTransaction expense={expense} setExpense={setExpense}/>
+        <History expense={expense} setExpense={setExpense} updateobj={updateobj}/>
+        <AddTransaction expense={expense} setExpense={setExpense} updatedobject={updatedobject}/>
       </div>
     </div>
   );

@@ -1,13 +1,25 @@
-function UpdateButton()
-{
-  function updatetransaction()
-  {
-    console.log('Update');
+import "./updatebtn.css";
+import axios from "axios";
+function UpdateButton({ id, updateobj }) {
+
+  function updatetransaction(e) {
+    e.stopPropagation();
+    console.log(`Function updatetransaction from updatebutton.jsx run`);
+    let title=e.target.parentElement.children[1].innerHTML;
+    let amount=e.target.parentElement.children[2].innerHTML;
+    let obj = {
+      _id: id,
+      text: title,
+      amount: Number(amount),
+    };
+    updateobj(obj);
   }
-   return (
-    <div>
-      <button onClick={updatetransaction}><i class="fa-regular fa-pen-to-square"></i></button>
-    </div>
-   );
+  return (
+      <i
+        id={id}
+        className="fa-regular fa-pen-to-square updatebtn"
+        onClick={updatetransaction}
+      ></i>
+  );
 }
 export default UpdateButton;

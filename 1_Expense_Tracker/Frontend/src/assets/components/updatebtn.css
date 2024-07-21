@@ -1,0 +1,20 @@
+.updatebtn
+{
+   scale:0;
+   padding:4px 4px;
+   border-radius:3px;
+   background-color: green;
+   animation:inframe 0.7s ease-in-out forwards;
+   margin-left:3px;
+}
+@keyframes inframe
+{
+   from
+   {
+     scale:0%;
+   }
+   to
+   {
+      scale:100%;
+   }
+}
