@@ -15,13 +15,13 @@ function History({ expense, setExpense, updateobj }) {
     setshowCloseBtn(false);
   }
   function dltItem(e) {
-    console.log("btnclicked");
+    // console.log("btnclicked");
     const objid = e.target.id;
     axios
-      .delete(`http://localhost:5000/api/v1/transactions/${objid}`)
+      .delete(`https://expense-tracker-full-stack-api.vercel.app/api/v1/transactions/${objid}`)
       .then(() => {
         axios
-          .get("http://localhost:5000/api/v1/transactions/")
+          .get("https://expense-tracker-full-stack-api.vercel.app/api/v1/transactions/")
           .then((res) => {
             setExpense(res.data.datagot);
           })

@@ -20,7 +20,7 @@ function App() {
     // console.log('App Rerendered');
     // Fetch data from the API
     axios
-      .get("http://localhost:5000/api/v1/transactions/")
+      .get("https://expense-tracker-full-stack-api.vercel.app/api/v1/transactions/")
       .then((response) => {
         setExpense(response.data.datagot); // Update the state with the fetched data
       })

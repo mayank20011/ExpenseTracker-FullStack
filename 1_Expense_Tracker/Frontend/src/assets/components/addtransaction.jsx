@@ -27,12 +27,12 @@ function AddTransaction({
   function updateObject(obj, e) {
     axios
       .patch(
-        `http://localhost:5000/api/v1/transactions/${updatedobject._id}`,
+        `https://expense-tracker-full-stack-api.vercel.app/api/v1/transactions/${updatedobject._id}`,
         obj
       )
       .then(() => {
         axios
-          .get("http://localhost:5000/api/v1/transactions/")
+          .get("https://expense-tracker-full-stack-api.vercel.app/api/v1/transactions/")
           .then((response) => {
             // console.log(response);
             setExpense(response.data.datagot);
@@ -49,7 +49,7 @@ function AddTransaction({
   }
   function createObject(obj, e) {
     axios
-      .post("http://localhost:5000/api/v1/transactions/", obj)
+      .post("https://expense-tracker-full-stack-api.vercel.app/api/v1/transactions/", obj)
       .then((response) => {
         setExpense([response.data, ...expense]);
         setInputValue(defaultvalue);
