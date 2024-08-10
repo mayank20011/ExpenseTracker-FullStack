@@ -106,27 +106,3 @@ export function updateTransaction(req, res) {
       });
     });
 }
-
-
-
-
-
-
-
-// transaction.find({_id:id})
-//   .then((data)=>
-//     {
-//       console.log(`successfull: ${data}`);
-//       transaction.findOneAndReplace(data, {...data, "text":text, "amount":amount}).then((data) => {
-//         res.json({
-//           success: true,
-//           data: data,
-//         });
-//       })
-//       .catch(() => {
-//         res.json({
-//           success: false,
-//           error:`No Such data in database with id: ${id}`,
-//         });
-//       });;
-//     });
